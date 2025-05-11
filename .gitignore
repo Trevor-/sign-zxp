@@ -3,3 +3,4 @@ coverage
 *.log
 bin/**
 .nyc_output
+.DS_Store
