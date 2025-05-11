@@ -1,0 +1,7 @@
+test/
+bin/
+.jshintrc
+.travis.yml
+.eslintrc.js
+.nyc_output
+coverage
