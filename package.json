@@ -1,7 +1,7 @@
 {
-  "name": "zxp-sign",
+  "name": "zxp_sign",
   "version": "1.0.0",
-  "description": "A wrapper for Adobe's extension signer. Forked from https://github.com/codearoni/zxp-sign-cmd",
+  "description": "A wrapper for Adobe's extension signer. Forked from https://github.com/codearoni/zxp_sign-cmd",
   "main": "index.js",
   "scripts": {
     "lint": "eslint ./index.js",
@@ -23,12 +23,12 @@
   "author": "Trevor",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Trevor-/zxp-sign.git"
+    "url": "https://github.com/Trevor-/zxp_sign.git"
   },
   "bugs": {
-    "url": "https://github.com/Trevor-/zxp-sign/issues"
+    "url": "https://github.com/Trevor-/zxp_sign/issues"
   },
-  "homepage": "https://github.com/Trevor-/zxp-sign#readme",
+  "homepage": "https://github.com/Trevor-/zxp_sign#readme",
   "license": "MIT",
   "dependencies": {
     "zxp-signer": "^1.0.0"
