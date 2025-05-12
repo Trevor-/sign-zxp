@@ -5,7 +5,7 @@ const path =  require('path');
 const fs = require('fs');
 const exec = util.promisify(require('child_process').exec);
 const mkdir = util.promisify(fs.mkdir);
-const zxpProvider = require('zxp-provider');
+const zxpProvider = require('zxp-signer');
 const zxp = zxpProvider();
 
 const insertSpaces = function () {
