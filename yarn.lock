@@ -3261,7 +3261,7 @@ yargs@^15.0.2:
     y18n "^4.0.0"
     yargs-parser "^18.1.2"
 
-zxp-signer@^1.0.0:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/zxp-signer/-/zxp-signer-1.0.5.tgz#582f33eb863296984474ad7b9a41c95efa645a15"
-  integrity sha512-lXkijBZwdDq5qnlRWEbn9SxxkKYWGZYQM24Ge/ap779J/S26OmCxozRNqC9N9nnN6IDepwd8ZzpNAgzu1hF74Q==
+zxp-signer@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/zxp-signer/-/zxp-signer-1.0.6.tgz#3ec85162b938b9ae51a63eb272a11e27d159f012"
+  integrity sha512-4SxJds9qPdSvGhQ59R/+jD2yLYqkc3gLTOUrRS7CN0Sbb+H/VOZR2DWg5I7OBQCXU31n+WTOF5mGGEhmO7aLhA==
