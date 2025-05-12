@@ -1,41 +1,41 @@
-# zxp_sign
+# sign-zxp
 
 > A JS wrapper for Adobe's extension signer - ZXPSignCmd
 
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-![Dependencies](https://img.shields.io/librariesio/release/npm/zxp_sign)
-[![Coverage Status](https://coveralls.io/repos/github/Trevor-/zxp_sign/badge.svg?branch=master)](https://coveralls.io/github/Trevor-/zxp_sign?branch=master)
+![Dependencies](https://img.shields.io/librariesio/release/npm/sign-zxp)
+[![Coverage Status](https://coveralls.io/repos/github/Trevor-/sign-zxp/badge.svg?branch=master)](https://coveralls.io/github/Trevor-/sign-zxp?branch=master)
 
 ## Credits
 
-This is an independent fork of <https://github.com/codearoni/zxp_sign-cmd.git> with updated ZXPSignCmd binaries.  
+This is an independent fork of <https://github.com/codearoni/sign-zxp-cmd.git> with updated ZXPSignCmd binaries.  
 All the hard work was done by <https://github.com/codearoni>
 
 ## About
 
-zxp_sign provides a simple interface for Adobe's extension signer. zxp_sign takes care of starting the requires processes, handling errors, and building the output directory if required.
+sign-zxp provides a simple interface for Adobe's extension signer. sign-zxp takes care of starting the requires processes, handling errors, and building the output directory if required.
 
 ## Installation
 
 ```bash
-    npm i zxp_sign -D
+    npm i sign-zxp -D
 ```
 
 For Yarn
 
 ```bash
-    yarn add zxp_sign
+    yarn add sign-zxp
 ```
 
 ## Usage
 
 ```javascript
-const zxpSign = require('zxp_sign');
+const zxpSign = require('sign-zxp');
 ```
 
 There are functions for all 3 operations: sign, selfSignedCert, and verify.
 Each function takes an options object as its first parameter. See the property tables for the appropriate function below.
-zxp_sign's latest API uses promises and async functions. If you require a callback-style implementation, please revert to the legacy v1.x.x API.
+sign-zxp's latest API uses promises and async functions. If you require a callback-style implementation, please revert to the legacy v1.x.x API.
 The result will be a string and will contain the stdout provided by ZXPSignCmd (if the task succeeds). In the event that the task fails, an error is thrown.
 If you would like to use the await-style implementation, it is recommended to wrap a try/catch and handle errors that way.
 However, the API does support .then( ) and .catch( ) configurations.
@@ -102,4 +102,4 @@ const verifyResult = await zxpSign.verify(options);
 
 * Code coverage is low because the ZXPSignCmd cannot run in the Travis-CI environment. I imagine this is due to an OS compatiblity issue. If you would like to run see more complete code coverage, pull the repo and execute "npm run test".
 
-* As of v2.0.0, zxp_sign uses the latest version as defined by the [zxp-provider API](https://github.com/codearoni/zxp-provider).
+* As of v2.0.0, sign-zxp uses the latest version as defined by the [zxp-provider API](https://github.com/codearoni/zxp-provider).
