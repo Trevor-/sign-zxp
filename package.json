@@ -1,6 +1,6 @@
 {
   "name": "sign-zxp",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A wrapper for Adobe's extension signer. Forked from https://github.com/codearoni/zxp_sign-cmd",
   "main": "index.js",
   "scripts": {
