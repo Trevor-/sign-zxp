@@ -40,6 +40,126 @@ The result will be a string and will contain the stdout provided by ZXPSignCmd (
 If you would like to use the await-style implementation, it is recommended to wrap a try/catch and handle errors that way.
 However, the API does support .then( ) and .catch( ) configurations.
 
+## Instructions
+
+Make a folder in the root of your repo (outside of your src folder).  
+Create a certificate using `signZXP.selfSignedCert()`  
+Create a js file in the folder with your build and signing tasks and execute the file using `node buildAnSignExtension.js`  
+You can make a vsCode task to execute the file too, if your vsCode is set up properly  
+The `buildAnSignExtension.js` (or whatever you call it) can call `yarn build` and update version numbers and perform any other tasks you need before signing.
+
+Sample `buildAnSignExtension.js`
+
+```js
+const fs = require("fs/promises");
+const path = require("path");
+const zxpSignCmd = require("sign-zxp");
+const { spawn } = require("child_process");
+const signZXP = require("sign-zxp");
+
+async function yarnBuild() {
+ return new Promise((resolve, reject) => {
+  const child = spawn("yarn", ["build"], {
+   stdio: "inherit",
+   shell: true,
+  });
+
+  child.on("close", (code) => {
+   if (code === 0) {
+    resolve(true);
+   } else {
+    reject(new Error(`yarn build exited with code ${code}`));
+   }
+  });
+
+  child.on("error", (err) => {
+   reject(err);
+  });
+ });
+}
+
+
+const result = await yarnBuild();
+
+const zxpOptions = {
+ input: "path/to/the/extension/folder",
+ output: "path/and/to/signed/folder/myExtension.zxp",
+ cert: path.join(__dirname, "cert.p12"),
+ password: "foo",
+ timestamp: "<http://timestamp.digicert.com/>",
+};   
+
+const zxpResult = await signZXP.sign(zxpOptions);
+console.log(zxpResult);
+```
+
+`tasks.json`
+
+```json
+{
+ "version": "2.0.0",
+ "tasks": [
+  {
+   "label": "🏛️ Build an sign extension 🏛️",
+   "group": "build",
+   "args" : [
+    "buildSnippet/buildAnSignExtension.js"
+   ],
+   "command": "node"
+  }
+ ]
+}
+```
+
+### Sign Certificate Example
+
+```js
+const signZXP = require("sign-zxp");
+// import signZXP from "fs/promises"; // Use import instead of require
+
+const zxpOptions = {
+ input: "path/to/the/extension/folder",
+ output: "path/and/to/signed/folder/myExtension.zxp",
+ cert: path.join(__dirname, "cert.p12"),
+ password: "foo",
+ timestamp: "<http://timestamp.digicert.com/>",
+};
+```
+
+const zxpResult = await signZXP.sign(zxpOptions);
+
+### Create Certificate Example
+
+```js
+const signZXP = require("sign-zxp");
+
+const zxpCertOptions = {
+ country: "US",
+ province: "NY",
+ org: "My Org",
+ name: "cert",
+ password: "foo",
+ output: path.join(__dirname, "cert.p12"),
+ // validityDays: 10 // To limit how long the cert is valid for, something you normally don't want to do!
+};
+
+const certResult = await signZXP.selfSignedCert(zxpCertOptions);
+```
+
+### Verify Example
+
+```js
+const signZXP = require("sign-zxp");
+
+const zxpVerifyOptions = {
+ input: "path/to/myExtension.zxp",
+ info: true, // optional for a more verbose output
+ skipChecks: false, // optional skip online check
+}
+
+const verifyResult = await zxpSign.verify(zxpVerifyOptions);
+```
+
 ### sign
 
 Options
@@ -97,9 +217,3 @@ Example:
 ```javascript
 const verifyResult = await zxpSign.verify(options);
 ```
-
-## Notes
-
-* Code coverage is low because the ZXPSignCmd cannot run in the Travis-CI environment. I imagine this is due to an OS compatiblity issue. If you would like to run see more complete code coverage, pull the repo and execute "npm run test".
-
-* As of v2.0.0, sign-zxp uses the latest version as defined by the [zxp-provider API](https://github.com/codearoni/zxp-provider).
